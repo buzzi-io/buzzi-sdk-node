@@ -37,7 +37,7 @@ class Service {
     else throw new Error('Invalid Arguments');
 
     return request({
-      method: 'POST'
+      method: 'POST',
       url: `/event/${type}/${version}`,
       baseUrl: this.host,
       // headers: {},
