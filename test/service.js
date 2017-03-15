@@ -6,10 +6,7 @@ describe('Service', function () {
   const service = new SDK.Service();
 
   it ('ping', function () {
-    return service.ping()
-      .then(body => {
-        assert(body === 'pong');
-      });
+    return service.ping();
   });
 
   it ('isAuthorized', function () {
