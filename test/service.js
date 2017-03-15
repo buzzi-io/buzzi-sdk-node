@@ -1,5 +1,7 @@
 'use strict';
 
+const Promise = require('bluebird');
+
 describe('Service', function () {
 
   const SDK = require('../');
@@ -29,11 +31,17 @@ describe('Service', function () {
   it ('fetch event', function () {
     return service.fetch()
       .then(response => {
-        assert((
-          (response instanceof SDK.Delivery) ||
-          (response === null)
-        ), 'is Delivery or null');
+        assert(response instanceof SDK.Delivery, 'is Delivery');
       });
+  });
+
+  it ('remove event', function () {
+    return service.send('buzzi.ecommerce.test', {
+      message: 'Hello, World!',
+      timestamp: (new Date()).toISOString(),
+    })
+    .then(() => service.fetch())
+    .then(response => service.remove(response.receipt));
   });
 
 });
