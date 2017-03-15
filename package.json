@@ -4,7 +4,7 @@
   "description": "Buzzi SDK for Node.js",
   "main": "index.js",
   "scripts": {
-    "test": "env $(cat test/.env | xargs) node_modules/.bin/istanbul cover node_modules/.bin/_mocha"
+    "test": "env $(cat test/.env | xargs) node_modules/.bin/istanbul cover node_modules/.bin/_mocha || true"
   },
   "repository": {
     "type": "git",
@@ -30,6 +30,7 @@
     "request-promise": "^4.1.1"
   },
   "devDependencies": {
+    "chai": "^3.5.0",
     "istanbul": "^0.4.5",
     "mocha": "^3.2.0"
   }

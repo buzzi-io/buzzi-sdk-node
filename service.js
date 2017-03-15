@@ -12,15 +12,27 @@ class Service {
     this.secret = secret || process.env.BUZZI_API_SECRET;
   }
 
-  isAuthorized() {
-    return request({
-      method: 'GET',
-      url: '/authorized',
+  request (config) {
+    return request(Object.assign({
       baseUrl: this.host,
       auth: {
         user: this.id,
         pass: this.secret,
-      }
+      },
+    }, config));
+  }
+
+  ping () {
+    return this.request({
+      method: 'GET',
+      url: '/ping',
+    });
+  }
+
+  isAuthorized () {
+    return this.request({
+      method: 'GET',
+      url: '/authorized',
     })
     .then(() => true)
     .catch(reason => {
@@ -36,15 +48,9 @@ class Service {
     else if (args.length === 2) [type, payload] = args;
     else throw new Error('Invalid Arguments');
 
-    return request({
+    return this.request({
       method: 'POST',
       url: `/event/${type}/${version}`,
-      baseUrl: this.host,
-      // headers: {},
-      auth: {
-        user: this.id,
-        pass: this.secret,
-      },
       body: payload,
       json: true,
     });
