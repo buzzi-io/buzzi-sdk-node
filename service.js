@@ -1,6 +1,7 @@
 'use strict';
 
 const request = require('request-promise');
+const Delivery = require('./delivery');
 
 const DEFAULT_VERSION = 'v1.0';
 
@@ -56,7 +57,25 @@ class Service {
     });
   }
 
+  fetch () {
+    return this.request({
+      method: 'GET',
+      url: '/event',
+      resolveWithFullResponse: true,
+    })
+    .then(response => {
+      if (response.statusCode === 204) return null;
+      return Delivery.fromResponse(response);
+    });
+  }
 
+  remove (receipt) {
+    return this.request({
+      method: 'DELETE',
+      url: '/event',
+      qs: { receipt },
+    });
+  }
 
 }
 

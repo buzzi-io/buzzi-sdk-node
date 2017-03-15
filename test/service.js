@@ -26,4 +26,14 @@ describe('Service', function () {
     });
   });
 
+  it ('fetch event', function () {
+    return service.fetch()
+      .then(response => {
+        assert((
+          (response instanceof SDK.Delivery) ||
+          (response === null)
+        ), 'is Delivery or null');
+      });
+  });
+
 });
