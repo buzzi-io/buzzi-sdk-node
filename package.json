@@ -28,6 +28,8 @@
   "dependencies": {
     "bluebird": "^3.5.0",
     "debug": "^2.6.3",
+    "fibonacci-backoff-interval": "^1.0.1",
+    "glob-to-regexp": "^0.3.0",
     "lodash.camelcase": "^4.3.0",
     "object.values": "^1.0.4",
     "request": "^2.81.0",
