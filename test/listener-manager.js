@@ -1,6 +1,6 @@
 'use strict';
 
-describe.only('ListenerManager', function () {
+describe ('ListenerManager', function () {
 
   const ListenerManager = require('../lib/consumer/listener-manager');
 
