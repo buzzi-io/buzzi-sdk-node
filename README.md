@@ -3,7 +3,7 @@ Buzzi SDK for Node.js
 
 ## Usage
 
-A Service that sends data (Publish) and receives data (Consume). 
+A Service that sends data (Publish) and receives data (Consume).
 
 ```javascript
 
@@ -43,11 +43,13 @@ service.fetch()
     //  event_type: 'buzzi.ecommerce.test',
     //  event_version: 'v1.0',
     //  event_display: 'Test Event',
-    //  publisher_id: '<uuid>',
-    //  publisher_display: 'Testing Service',
+    //  producer_id: '<uuid>',
+    //  producer_display: 'Testing Service',
+    //  integration_id: '<uuid>',
+    //  integration_display: 'Test Integration',
     //  receipt: '<jwt>',
     //  variables: {},
-    //  body: { message: 'Hello, World!', timestamp: '2017-03-17T22:03:03.386Z' } 
+    //  body: { message: 'Hello, World!', timestamp: '2017-03-17T22:03:03.386Z' }
     // }
  });
 
