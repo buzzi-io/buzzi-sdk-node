@@ -1,0 +1,33 @@
+# Change Log
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](http://keepachangelog.com/)
+and this project adheres to [Semantic Versioning](http://semver.org/).
+
+## [Unreleased]
+
+## [1.1.0] - 2017-03-28
+### Changed
+- Examples in README. 
+- Modify Delivery schema. 
+
+## [1.0.0] - 2017-03-17
+### Added
+- Unit and Integration Tests
+- Service class features:
+  - check if authorized
+  - ping api
+  - send/submit events
+  - fetch/retrieve events 
+  - confirm/remove events
+- Service.fetch returns a Delivery class instance.
+- Consumer class features:
+  - add listeners for specific events.
+  - allows for wildcard pattern matching.
+  - onerror listener.
+  - start/stop functionality.
+  - runs on an interval (like a cron job) asking api for events.
+  - fibanocci backoff when no events available for the consumer.
+  - uses promises to know when async methods have completed. 
+  - automatically calls api to confirm/remove event from queue. 
+  - ability to override minimum and maximum interval ranges by passing in an options object or setting environment variables. 
