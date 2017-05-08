@@ -39,3 +39,7 @@ jspm_packages
 # Test Environment Variable File
 test.env
 .env
+.idea/
+.idea/buzzi-sdk-node.iml
+.idea/modules.xml
+.idea/workspace.xml
