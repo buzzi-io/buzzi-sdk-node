@@ -76,23 +76,10 @@ describe('Service', function () {
           fs.createReadStream(fixturePath1),
           fs.createReadStream(fixturePath2),
         ],
-        bufFile:  new Buffer('asfasfas'),
+        bufFile: Buffer.from('asfasfas'),
       };
       service.upload(formData);
       sinon.assert.calledOnce(stub);
-      stub.restore();
-    });
-
-    it('should throw error when item isn\'t provide Readable or Buffer', () => {
-      const stub = sinon.stub(service, 'request');
-      const typesArr = ['str', 1, true, [], {}, null, undefined, () => {}];
-      const throwsError = [];
-      typesArr.forEach((typeToCheck) => {
-        throwsError.push(() => {service.upload(typeToCheck)});
-      });
-      throwsError.forEach((throwErr) => {
-        expect(throwErr).to.throw(Error);
-      });
       stub.restore();
     });
 
