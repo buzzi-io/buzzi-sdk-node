@@ -51,16 +51,18 @@ describe('Service', function () {
     .then(response => service.remove(response.receipt));
   });
 
-  describe('uploadFiles', () => {
+  describe('upload', () => {
     it('should be a function', () => {
-      expect(service.uploadFiles).to.be.a('function');
+      expect(service.upload).to.be.a('function');
     });
 
     it('should send files when it is only one Readable', () => {
       const stub = sinon.stub(service, 'request');
       const fixturePath = path.join(__dirname, 'fixtures/files/hello.txt');
-      const fsStream = fs.createReadStream(fixturePath);
-      service.uploadFiles(fsStream);
+      const formData = {
+        attachments: [fs.createReadStream(fixturePath)]
+      };
+      service.upload(formData);
       sinon.assert.calledOnce(stub);
       stub.restore();
     });
@@ -69,10 +71,14 @@ describe('Service', function () {
       const stub = sinon.stub(service, 'request');
       const fixturePath1 = path.join(__dirname, 'fixtures/files/hello.txt');
       const fixturePath2 = path.join(__dirname, 'fixtures/files/image.jpg');
-      const fsStream1 = fs.createReadStream(fixturePath1);
-      const fsStream2 = fs.createReadStream(fixturePath2);
-      const fsStream3 = new Buffer('asfasfas');
-      service.uploadFiles([fsStream1, fsStream2, fsStream3]);
+      const formData = {
+        attachments: [
+          fs.createReadStream(fixturePath1),
+          fs.createReadStream(fixturePath2),
+        ],
+        bufFile:  new Buffer('asfasfas'),
+      };
+      service.upload(formData);
       sinon.assert.calledOnce(stub);
       stub.restore();
     });
@@ -82,7 +88,7 @@ describe('Service', function () {
       const typesArr = ['str', 1, true, [], {}, null, undefined, () => {}];
       const throwsError = [];
       typesArr.forEach((typeToCheck) => {
-        throwsError.push(() => {service.uploadFiles(typeToCheck)});
+        throwsError.push(() => {service.upload(typeToCheck)});
       });
       throwsError.forEach((throwErr) => {
         expect(throwErr).to.throw(Error);
@@ -94,20 +100,25 @@ describe('Service', function () {
       this.timeout(6000);
       const fixturePath = path.join(__dirname, 'fixtures/files/hello.txt');
       const fsStream = fs.createReadStream(fixturePath);
-      const result = await service.uploadFiles(fsStream);
+      const result = await service.upload({ attachments: fsStream });
       expect(JSON.parse(result)).to.be.an('object')
         .that.haveOwnProperty('files');
     });
 
-    it.skip('should send file and return correct result when item Buffer', async function() { // TODO where i can get file name in buffer
+    it('should send file and return correct result when item Buffer', async function() { // TODO where i can get file name in buffer
       const readFile = Promise.promisify(fs.readFile);
-      this.timeout(6000);
-      const fixturePath = path.join(__dirname, 'fixtures/files/hello.txt');
+      this.timeout(20000);
+      const fixturePath = path.join(__dirname, 'fixtures/files/image.jpg');
       const fileBuf = await readFile(fixturePath);
-      const result = await service.uploadFiles(fileBuf);
-      console.log(result);
-      // expect(JSON.parse(result)).to.be.an('object')
-      //   .that.haveOwnProperty('files');
+      await service.upload({
+        custom_file: {
+          value: fileBuf,
+          options: {
+            filename: 'test.jpg',
+            contentType: 'image/jpeg'
+          }
+        }
+      });
     });
   });
 });
