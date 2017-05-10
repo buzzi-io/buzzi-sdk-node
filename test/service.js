@@ -51,7 +51,7 @@ describe('Service', function () {
     .then(response => service.remove(response.receipt));
   });
 
-  describe.only('uploadFiles', () => {
+  describe('uploadFiles', () => {
     it('should be a function', () => {
       expect(service.uploadFiles).to.be.a('function');
     });
@@ -73,7 +73,7 @@ describe('Service', function () {
       stub.restore();
     });
 
-    it('should send file and return correct result', async function() {
+    it.skip('should send file and return correct result', async function() { // TODO integration test
       this.timeout(6000);
       const fixturePath = path.join(__dirname, 'fixtures/files/hello.txt');
       const result = await service.uploadFiles(fixturePath);
