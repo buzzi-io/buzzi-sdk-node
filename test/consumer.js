@@ -4,32 +4,38 @@ const Promise = require('bluebird');
 const sinon = require('sinon');
 const { FakeDelivery } = require('./mocks');
 
-describe ('Consumer', function () {
+describe('Consumer', function () {
 
   const Service = require('../lib/service');
   const Consumer = require('../lib/consumer');
 
-  describe ('constructor', function () {
+  describe('constructor', function () {
 
-    it ('requires new operator', function () {
+    it('requires new operator', function () {
       expect(() => Consumer(new Service())).to.throw(Error);
     });
 
-    it ('requires a Service instance as an argument', function () {
+    it('requires a Service instance as an argument', function () {
       expect(new Consumer(new Service())).to.be.an.instanceof(Consumer);
       expect(() => new Consumer()).to.throw(Error);
-      expect(() => new Consumer({ host: '', ip: '', secret: '', fetch: () => {}, remove: () => {} })).to.throw(Error);
+      expect(() => new Consumer({
+        host: '',
+        ip: '',
+        secret: '',
+        fetch: () => {},
+        remove: () => {},
+      })).to.throw(Error);
     });
 
-    it ('allows options to pass in "max" and "min" interval values', function () {
+    it('allows options to pass in "max" and "min" interval values', function () {
       expect(new Consumer(new Service(), { max: 100, min: 10 })).to.be.an.instanceof(Consumer);
     });
 
   });
 
-  describe ('Timing Scenarios', function () {
+  describe('Timing Scenarios', function () {
 
-    it ('#1 - No Events', function () {
+    it('#1 - No Events', function () {
 
       let spies = {};
       let stubs = {};
@@ -83,7 +89,7 @@ describe ('Consumer', function () {
         });
     });
 
-    it ('#2 With Events', function () {
+    it('#2 With Events', function () {
 
       let spies = {};
       let stubs = {};

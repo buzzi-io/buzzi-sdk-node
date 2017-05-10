@@ -1,47 +1,45 @@
 'use strict';
 
-const Promise = require('bluebird');
-
 describe('Service', function () {
 
   const SDK = require('../');
   const service = new SDK.Service();
 
-  it ('ping', function () {
+  it('ping', function () {
     return service.ping();
   });
 
-  it ('isAuthorized', function () {
+  it('isAuthorized', function () {
     return service.isAuthorized()
       .then(isAuthd => {
         assert(isAuthd === true, 'is authorized');
       });
   });
 
-  it ('send event', function () {
+  it('send event', function () {
     return service.send('buzzi.ecommerce.test', {
       message: 'Hello, World!',
       timestamp: (new Date()).toISOString(),
     })
-    .then(body => {
-      expect(body).to.have.property('event');
-    });
+      .then(body => {
+        expect(body).to.have.property('event');
+      });
   });
 
-  it ('fetch event', function () {
+  it('fetch event', function () {
     return service.fetch()
       .then(response => {
         assert(response instanceof SDK.Delivery, 'is Delivery');
       });
   });
 
-  it ('remove event', function () {
+  it('remove event', function () {
     return service.send('buzzi.ecommerce.test', {
       message: 'Hello, World!',
       timestamp: (new Date()).toISOString(),
     })
-    .then(() => service.fetch())
-    .then(response => service.remove(response.receipt));
+      .then(() => service.fetch())
+      .then(response => service.remove(response.receipt));
   });
 
 });
