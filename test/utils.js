@@ -18,7 +18,7 @@ describe('Service', () => {
       });
     });
   });
-  describe.only('#isStream', () => {
+  describe('#isStream', () => {
     it('should return true if item provide read from stream', () => {
       const fixturePath = path.join(__dirname, 'fixtures/files/hello.txt');
       const streamsToCheck =  [
