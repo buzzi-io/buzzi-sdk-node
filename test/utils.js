@@ -29,19 +29,19 @@ describe('Service', () => {
       ];
 
       streamsToCheck.forEach((streamInstance) => {
-        expect(utils.isReadableStream(streamInstance)).to.be.eql(true);
+        expect(utils.isReadable(streamInstance)).to.be.eql(true);
       });
     });
 
     it('should return false if item is Writable stream', () => {
       const writableStream = new Writable();
-      expect(utils.isReadableStream(writableStream)).to.be.eql(false);
+      expect(utils.isReadable(writableStream)).to.be.eql(false);
     });
 
     it('should return false if item is not stream', () => {
       const typesArr = ['str', 1, true, [], {}, null, undefined, () => {}];
       typesArr.forEach((typeToCheck) => {
-        expect(utils.isReadableStream(typeToCheck)).to.be.eql(false);
+        expect(utils.isReadable(typeToCheck)).to.be.eql(false);
       });
     });
   });
