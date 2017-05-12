@@ -45,14 +45,12 @@ describe('Listener', function () {
 
     it('"original" property is string passed in to constructor', function () {
       const event = 'buzzi.ecommerce.test';
-      const listener = new Listener(event, () => {
-      });
+      const listener = new Listener(event, () => {});
       expect(listener.original).to.be.equal(event);
     });
 
     it('"handler" property is callback passed in to constructor', function () {
-      const callback = function callback() {
-      };
+      const callback = function callback() {};
       const listener = new Listener('', callback);
       expect(listener.handler).to.be.equal(callback);
     });
@@ -95,8 +93,7 @@ describe('Listener', function () {
   describe('matching events', function () {
 
     it('"*" matches everything', function () {
-      const listener = new Listener('*', () => {
-      });
+      const listener = new Listener('*', () => {});
       assert.isTrue(listener.isMatchingEvent('buzzi.ecommerce.test'));
       assert.isTrue(listener.isMatchingEvent('company.industry.event'));
       assert.isTrue(listener.isMatchingEvent('company.industry'));
@@ -107,8 +104,7 @@ describe('Listener', function () {
     });
 
     it('"*.*.*" matches everything with all three parts', function () {
-      const listener = new Listener('*.*.*', () => {
-      });
+      const listener = new Listener('*.*.*', () => {});
       assert.isTrue(listener.isMatchingEvent('buzzi.ecommerce.test'));
       assert.isTrue(listener.isMatchingEvent('company.industry.event'));
       assert.isFalse(listener.isMatchingEvent('industry.event'));
@@ -119,8 +115,7 @@ describe('Listener', function () {
     });
 
     it('"buzzi.*" matches', function () {
-      const listener = new Listener('buzzi.*', () => {
-      });
+      const listener = new Listener('buzzi.*', () => {});
       assert.isTrue(listener.isMatchingEvent('buzzi.ecommerce.test'));
       assert.isTrue(listener.isMatchingEvent('buzzi.industry.event'));
       assert.isTrue(listener.isMatchingEvent('buzzi.industry'));
@@ -130,8 +125,7 @@ describe('Listener', function () {
     });
 
     it('"*.test" matches', function () {
-      const listener = new Listener('*.test', () => {
-      });
+      const listener = new Listener('*.test', () => {});
       assert.isTrue(listener.isMatchingEvent('buzzi.ecommerce.test'));
       assert.isTrue(listener.isMatchingEvent('company.industry.test'));
       assert.isTrue(listener.isMatchingEvent('company.test'));
@@ -141,8 +135,7 @@ describe('Listener', function () {
     });
 
     it('"*.ecommerce.*" matches', function () {
-      const listener = new Listener('*.ecommerce.*', () => {
-      });
+      const listener = new Listener('*.ecommerce.*', () => {});
       assert.isTrue(listener.isMatchingEvent('buzzi.ecommerce.test'));
       assert.isTrue(listener.isMatchingEvent('company.ecommerce.test'));
       assert.isFalse(listener.isMatchingEvent('company.ecommerce'));
@@ -156,8 +149,7 @@ describe('Listener', function () {
   describe('matching version', function () {
 
     it('"" matches everything', function () {
-      const listener = new Listener('buzzi.ecommerce.test', () => {
-      });
+      const listener = new Listener('buzzi.ecommerce.test', () => {});
       assert.isTrue(listener.isMatchingVersion('v12.10'));
       assert.isTrue(listener.isMatchingVersion('12.10'));
       assert.isTrue(listener.isMatchingVersion('v12'));
@@ -166,8 +158,7 @@ describe('Listener', function () {
     });
 
     it('"v12" matches', function () {
-      const listener = new Listener('buzzi.ecommerce.test@v12', () => {
-      });
+      const listener = new Listener('buzzi.ecommerce.test@v12', () => {});
       assert.isTrue(listener.isMatchingVersion('v12.10'));
       assert.isTrue(listener.isMatchingVersion('12.10'));
       assert.isTrue(listener.isMatchingVersion('v12'));
@@ -176,8 +167,7 @@ describe('Listener', function () {
     });
 
     it('"v12.10" matches', function () {
-      const listener = new Listener('buzzi.ecommerce.test@v12.10', () => {
-      });
+      const listener = new Listener('buzzi.ecommerce.test@v12.10', () => {});
       assert.isTrue(listener.isMatchingVersion('v12.10'));
       assert.isTrue(listener.isMatchingVersion('12.10'));
       assert.isFalse(listener.isMatchingVersion('v12'));
@@ -186,8 +176,7 @@ describe('Listener', function () {
     });
 
     it('"12" matches', function () {
-      const listener = new Listener('buzzi.ecommerce.test@12', () => {
-      });
+      const listener = new Listener('buzzi.ecommerce.test@12', () => {});
       assert.isTrue(listener.isMatchingVersion('v12.10'));
       assert.isTrue(listener.isMatchingVersion('12.10'));
       assert.isTrue(listener.isMatchingVersion('v12'));
@@ -196,8 +185,7 @@ describe('Listener', function () {
     });
 
     it('"12.10" matches', function () {
-      const listener = new Listener('buzzi.ecommerce.test@12.10', () => {
-      });
+      const listener = new Listener('buzzi.ecommerce.test@12.10', () => {});
       assert.isTrue(listener.isMatchingVersion('v12.10'));
       assert.isTrue(listener.isMatchingVersion('12.10'));
       assert.isFalse(listener.isMatchingVersion('v12'));

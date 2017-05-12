@@ -26,8 +26,7 @@ describe('ListenerManager', function () {
     });
 
     it('can register a callback for an event type', function () {
-      expect(manager.add('event', () => {
-      })).to.be.undefined;
+      expect(manager.add('event', () => {})).to.be.undefined;
     });
 
     it('can add a callback for many event types ', function () {
@@ -36,10 +35,8 @@ describe('ListenerManager', function () {
 
     it('throws error if invalid arguments', function () {
       expect(() => manager.add('event')).to.throw(Error);
-      expect(() => manager.add(3, () => {
-      })).to.throw(Error);
-      expect(() => manager.add(['event', 3], () => {
-      })).to.throw(Error);
+      expect(() => manager.add(3, () => {})).to.throw(Error);
+      expect(() => manager.add(['event', 3], () => {})).to.throw(Error);
     });
 
   });
