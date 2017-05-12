@@ -1,3 +1,4 @@
+/* eslint global-require:0 */
 'use strict';
 
 describe('SDK', function () {
@@ -8,19 +9,19 @@ describe('SDK', function () {
   const Events = require('../lib/events');
   const Delivery = require('../lib/delivery');
 
-  it ('Service', function () {
+  it('Service', function () {
     expect(SDK.Service).to.be.equal(Service);
   });
 
-  it ('Consumer', function () {
+  it('Consumer', function () {
     expect(SDK.Consumer).to.be.equal(Consumer);
   });
 
-  it ('Events', function () {
+  it('Events', function () {
     expect(SDK.Events).to.be.equal(Events);
   });
 
-  it ('Delivery', function () {
+  it('Delivery', function () {
     expect(SDK.Delivery).to.be.equal(Delivery);
   });
 
