@@ -1,4 +1,5 @@
 'use strict';
+const noop = () => {};
 
 describe('ListenerManager', function () {
 
@@ -56,83 +57,46 @@ describe('ListenerManager', function () {
     it('returns only matches', function () {
 
       const matches = new Map([
-        ['*', () => {
-        }],
-        ['*.*', () => {
-        }],
-        ['*.*.*', () => {
-        }],
-        ['buzzi.*', () => {
-        }],
-        ['*.test', () => {
-        }],
-        ['*.ecommerce.*', () => {
-        }],
-        ['buzzi.ecommerce.*', () => {
-        }],
-        ['*.ecommerce.test', () => {
-        }],
-        ['buzzi.*.test', () => {
-        }],
-        ['buzzi.ecommerce.test', () => {
-        }],
-        ['buzzi.ecommerce.test@v1', () => {
-        }],
-        ['buzzi.ecommerce.test@1', () => {
-        }],
-        ['buzzi.ecommerce.test@v1.0', () => {
-        }],
-        ['buzzi.ecommerce.test@1.0', () => {
-        }],
-        ['*@v1.0', () => {
-        }],
-        ['*.test@v1.0', () => {
-        }],
-        ['*.test@v1', () => {
-        }],
-        ['*.test@1.0', () => {
-        }],
-        ['*.test@1', () => {
-        }],
-        ['buzzi.*@v1.0', () => {
-        }],
+        ['*', noop],
+        ['*.*', noop],
+        ['*.*.*', noop],
+        ['buzzi.*', noop],
+        ['*.test', noop],
+        ['*.ecommerce.*', noop],
+        ['buzzi.ecommerce.*', noop],
+        ['*.ecommerce.test', noop],
+        ['buzzi.*.test', noop],
+        ['buzzi.ecommerce.test', noop],
+        ['buzzi.ecommerce.test@v1', noop],
+        ['buzzi.ecommerce.test@1', noop],
+        ['buzzi.ecommerce.test@v1.0', noop],
+        ['buzzi.ecommerce.test@1.0', noop],
+        ['*@v1.0', noop],
+        ['*.test@v1.0', noop],
+        ['*.test@v1', noop],
+        ['*.test@1.0', noop],
+        ['*.test@1', noop],
+        ['buzzi.*@v1.0', noop],
       ]);
 
       const nonMatches = new Map([
-        ['company.*', () => {
-        }],
-        ['*.industry.*', () => {
-        }],
-        ['*.event', () => {
-        }],
-        ['*.*.event', () => {
-        }],
-        ['*@v2.0', () => {
-        }],
-        ['*@v2', () => {
-        }],
-        ['*@v1.1', () => {
-        }],
-        ['*.*.*@v1.1', () => {
-        }],
-        ['buzzi.ecommerce.test@v2.0', () => {
-        }],
-        ['buzzi.ecommerce.test@v2', () => {
-        }],
-        ['buzzi.ecommerce.test@v1.1', () => {
-        }],
-        ['buzzi.*@v1.1', () => {
-        }],
-        ['*.test@v1.1', () => {
-        }],
-        ['buzzi.industry.test', () => {
-        }],
-        ['buzzi.ecommerce.event', () => {
-        }],
-        ['company.ecommerce.test', () => {
-        }],
-        ['buzzi.*.event', () => {
-        }],
+        ['company.*', noop],
+        ['*.industry.*', noop],
+        ['*.event', noop],
+        ['*.*.event', noop],
+        ['*@v2.0', noop],
+        ['*@v2', noop],
+        ['*@v1.1', noop],
+        ['*.*.*@v1.1', noop],
+        ['buzzi.ecommerce.test@v2.0', noop],
+        ['buzzi.ecommerce.test@v2', noop],
+        ['buzzi.ecommerce.test@v1.1', noop],
+        ['buzzi.*@v1.1', noop],
+        ['*.test@v1.1', noop],
+        ['buzzi.industry.test', noop],
+        ['buzzi.ecommerce.event', noop],
+        ['company.ecommerce.test', noop],
+        ['buzzi.*.event', noop],
       ]);
 
       matches.forEach((value, key) => manager.add(key, value));

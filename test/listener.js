@@ -1,5 +1,5 @@
 'use strict';
-
+const noop = () => {};
 describe('Listener', function () {
 
   const Listener = require('../lib/consumer/listener');
@@ -28,8 +28,7 @@ describe('Listener', function () {
 
   describe('schema', function () {
 
-    const listener = new Listener(' ', () => {
-    });
+    const listener = new Listener(' ', noop);
 
     it('has static parseVersion method', function () {
       expect(Listener.parseVersion).to.be.a('function');
