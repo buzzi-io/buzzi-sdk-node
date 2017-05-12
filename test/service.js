@@ -9,9 +9,8 @@ describe('Service', function () {
 
   const SDK = require('../');
   const service = new SDK.Service(
-    '000000c1-1111-2222-3333-000000000000',
-    '1234567812345678123456781234567812345678123456781234567812345678',
-    'http://localhost:3000'
+    '000000b1-1111-2222-3333-000000000000',
+    '1234567812345678123456781234567812345678123456781234567812345678'
   );
 
   it ('ping', function () {
@@ -70,7 +69,7 @@ describe('Service', function () {
     it('should send files when it is Readable and(or) Buffer', () => {
       const stub = sinon.stub(service, 'request');
       const fixturePath1 = path.join(__dirname, 'fixtures/files/hello.txt');
-      const fixturePath2 = path.join(__dirname, 'fixtures/files/image.jpg');
+      const fixturePath2 = path.join(__dirname, 'fixtures/files/buzzi.png');
       const formData = {
         attachments: [
           fs.createReadStream(fixturePath1),
@@ -95,14 +94,14 @@ describe('Service', function () {
     it('should send file and return correct result when item Buffer', async function() { // TODO where i can get file name in buffer
       const readFile = Promise.promisify(fs.readFile);
       this.timeout(20000);
-      const fixturePath = path.join(__dirname, 'fixtures/files/image.jpg');
+      const fixturePath = path.join(__dirname, 'fixtures/files/buzzi.png');
       const fileBuf = await readFile(fixturePath);
       await service.upload({
         custom_file: {
           value: fileBuf,
           options: {
-            filename: 'test.jpg',
-            contentType: 'image/jpeg'
+            filename: 'buzzi.png',
+            contentType: 'image/png',
           }
         }
       });
