@@ -39,4 +39,4 @@ jspm_packages
 # Test Environment Variable File
 test.env
 .env
-.idea/
+.idea

@@ -1,3 +1,4 @@
+/* eslint global-require:0 */
 'use strict';
 
 const Promise = require('bluebird');
@@ -13,18 +14,18 @@ describe('Service', function () {
     '1234567812345678123456781234567812345678123456781234567812345678'
   );
 
-  it ('ping', function () {
+  it('ping', function () {
     return service.ping();
   });
 
-  it ('isAuthorized', function () {
+  it('isAuthorized', function () {
     return service.isAuthorized()
       .then(isAuthd => {
         assert(isAuthd === true, 'is authorized');
       });
   });
 
-  it ('send event', function () {
+  it('send event', function () {
     return service.send('buzzi.ecommerce.test', {
       message: 'Hello, World!',
       timestamp: (new Date()).toISOString(),
@@ -34,14 +35,14 @@ describe('Service', function () {
     });
   });
 
-  it ('fetch event', function () {
+  it('fetch event', function () {
     return service.fetch()
       .then(response => {
         assert(response instanceof SDK.Delivery, 'is Delivery');
       });
   });
 
-  it ('remove event', function () {
+  it('remove event', function () {
     return service.send('buzzi.ecommerce.test', {
       message: 'Hello, World!',
       timestamp: (new Date()).toISOString(),
@@ -59,7 +60,7 @@ describe('Service', function () {
       const stub = sinon.stub(service, 'request');
       const fixturePath = path.join(__dirname, 'fixtures/files/hello.txt');
       const formData = {
-        attachments: [fs.createReadStream(fixturePath)]
+        attachments: [fs.createReadStream(fixturePath)],
       };
       service.upload(formData);
       sinon.assert.calledOnce(stub);
@@ -82,7 +83,7 @@ describe('Service', function () {
       stub.restore();
     });
 
-    it('should send file and return correct result when item Readable stream', async function() { // TODO integration test
+    it('should send file and return correct result when item Readable stream', async function () {
       this.timeout(6000);
       const fixturePath = path.join(__dirname, 'fixtures/files/hello.txt');
       const fsStream = fs.createReadStream(fixturePath);
@@ -91,7 +92,7 @@ describe('Service', function () {
         .that.haveOwnProperty('files');
     });
 
-    it('should send file and return correct result when item Buffer', async function() { // TODO where i can get file name in buffer
+    it('should send file and return correct result when item Buffer', async function () {
       const readFile = Promise.promisify(fs.readFile);
       this.timeout(20000);
       const fixturePath = path.join(__dirname, 'fixtures/files/buzzi.png');
@@ -102,8 +103,8 @@ describe('Service', function () {
           options: {
             filename: 'buzzi.png',
             contentType: 'image/png',
-          }
-        }
+          },
+        },
       });
     });
   });

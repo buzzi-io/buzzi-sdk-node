@@ -1,0 +1,9 @@
+{
+  "extends": "buzzi",
+  "globals": {
+    "describe": true,
+    "it": true,
+    "expect": true,
+    "assert": true
+  }
+}

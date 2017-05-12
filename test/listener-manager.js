@@ -1,56 +1,60 @@
+/* eslint global-require:0 */
 'use strict';
 
-describe ('ListenerManager', function () {
+describe('ListenerManager', function () {
 
   const ListenerManager = require('../lib/consumer/listener-manager');
 
-  describe ('constructor', function () {
+  describe('constructor', function () {
 
-    it ('requires new operator', function () {
+    it('requires new operator', function () {
       expect(() => ListenerManager()).to.throw(Error);
     });
 
-    it ('requires no arguments', function () {
+    it('requires no arguments', function () {
       expect(new ListenerManager()).to.be.an.instanceof(ListenerManager);
     });
 
   });
 
-  describe ('add(name, callback)', function () {
+  describe('add(name, callback)', function () {
 
     const manager = new ListenerManager();
 
-    it ('is a method', function () {
+    it('is a method', function () {
       expect(manager.add).to.be.a('function');
     });
 
-    it ('can register a callback for an event type', function () {
-      expect(manager.add('event', () => {})).to.be.undefined;
+    it('can register a callback for an event type', function () {
+      expect(manager.add('event', () => {
+      })).to.be.undefined;
     });
 
-    it ('can add a callback for many event types ', function () {
+    it('can add a callback for many event types ', function () {
       expect(manager.add(['event', 'event2'], () => {})).to.be.undefined;
     });
 
-    it ('throws error if invalid arguments', function () {
+    it('throws error if invalid arguments', function () {
       expect(() => manager.add('event')).to.throw(Error);
-      expect(() => manager.add(3, () => {})).to.throw(Error);
-      expect(() => manager.add(['event', 3], () => {})).to.throw(Error);
-    })
+      expect(() => manager.add(3, () => {
+      })).to.throw(Error);
+      expect(() => manager.add(['event', 3], () => {
+      })).to.throw(Error);
+    });
 
   });
 
-  describe ('findAllMatchingHandlers({ event, version })', function () {
+  describe('findAllMatchingHandlers({ event, version })', function () {
 
     const manager = new ListenerManager();
     const event = 'buzzi.ecommerce.test';
     const version = 'v1.0';
 
-    it ('throws error if no matching event', function () {
+    it('throws error if no matching event', function () {
       expect(() => manager.findAllMatchingHandlers({ event, version })).to.throw(/No Event Handlers/);
     });
 
-    it ('returns only matches', function () {
+    it('returns only matches', function () {
 
       const matches = new Map([
         ['*', () => {}],

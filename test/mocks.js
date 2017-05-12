@@ -6,7 +6,7 @@ exports = module.exports = {};
 
 class FakeDelivery {
 
-  constructor (hydrate = {}) {
+  constructor(hydrate = {}) {
 
     Object.assign(this, {
       account_id: uuid(),
