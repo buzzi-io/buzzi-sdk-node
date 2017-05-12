@@ -1,8 +1,6 @@
 /* eslint global-require:0 */
 'use strict';
 
-const noop = () => {};
-
 describe('Listener', function () {
 
   const Listener = require('../lib/consumer/listener');
@@ -31,7 +29,7 @@ describe('Listener', function () {
 
   describe('schema', function () {
 
-    const listener = new Listener(' ', noop);
+    const listener = new Listener(' ', () => {});
 
     it('has static parseVersion method', function () {
       expect(Listener.parseVersion).to.be.a('function');
