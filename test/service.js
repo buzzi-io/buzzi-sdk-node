@@ -1,3 +1,4 @@
+/* eslint global-require:0 */
 'use strict';
 
 const Promise = require('bluebird');
@@ -59,7 +60,7 @@ describe('Service', function () {
       const stub = sinon.stub(service, 'request');
       const fixturePath = path.join(__dirname, 'fixtures/files/hello.txt');
       const formData = {
-        attachments: [fs.createReadStream(fixturePath)]
+        attachments: [fs.createReadStream(fixturePath)],
       };
       service.upload(formData);
       sinon.assert.calledOnce(stub);
@@ -82,7 +83,7 @@ describe('Service', function () {
       stub.restore();
     });
 
-    it('should send file and return correct result when item Readable stream', async function() { // TODO integration test
+    it('should send file and return correct result when item Readable stream', async function () {
       this.timeout(6000);
       const fixturePath = path.join(__dirname, 'fixtures/files/hello.txt');
       const fsStream = fs.createReadStream(fixturePath);
@@ -91,7 +92,7 @@ describe('Service', function () {
         .that.haveOwnProperty('files');
     });
 
-    it('should send file and return correct result when item Buffer', async function() { // TODO where i can get file name in buffer
+    it('should send file and return correct result when item Buffer', async function () {
       const readFile = Promise.promisify(fs.readFile);
       this.timeout(20000);
       const fixturePath = path.join(__dirname, 'fixtures/files/buzzi.png');
@@ -102,8 +103,8 @@ describe('Service', function () {
           options: {
             filename: 'buzzi.png',
             contentType: 'image/png',
-          }
-        }
+          },
+        },
       });
     });
   });

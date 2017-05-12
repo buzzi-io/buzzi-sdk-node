@@ -1,4 +1,6 @@
+/* eslint global-require:0 */
 'use strict';
+
 const noop = () => {};
 
 describe('ListenerManager', function () {

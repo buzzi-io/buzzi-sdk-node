@@ -1,5 +1,8 @@
+/* eslint global-require:0 */
 'use strict';
+
 const noop = () => {};
+
 describe('Listener', function () {
 
   const Listener = require('../lib/consumer/listener');

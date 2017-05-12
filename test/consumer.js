@@ -1,3 +1,4 @@
+/* eslint global-require:0 */
 'use strict';
 
 const Promise = require('bluebird');

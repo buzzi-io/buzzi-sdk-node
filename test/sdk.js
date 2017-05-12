@@ -1,3 +1,4 @@
+/* eslint global-require:0 */
 'use strict';
 
 describe('SDK', function () {
