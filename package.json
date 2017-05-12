@@ -4,8 +4,8 @@
   "description": "Buzzi SDK for Node.js",
   "main": "index.js",
   "scripts": {
-    "test": "env $(cat test/.env | xargs) node_modules/.bin/istanbul cover node_modules/.bin/_mocha || true",
-    "debug": "env $(cat test/.env | xargs) node_modules/.bin/mocha --inspect --debug-brk || true"
+    "test": "node_modules/.bin/istanbul cover node_modules/.bin/_mocha || true",
+    "debug": "node_modules/.bin/mocha --inspect --debug-brk || true"
   },
   "repository": {
     "type": "git",
