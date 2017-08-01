@@ -11,7 +11,8 @@ describe('Service', function () {
   const SDK = require('../');
   const service = new SDK.Service(
     '000000b1-1111-2222-3333-000000000000',
-    '1234567812345678123456781234567812345678123456781234567812345678'
+    '1234567812345678123456781234567812345678123456781234567812345678',
+    'https://dev-core.buzzi.io'
   );
 
   it('ping', function () {
@@ -26,7 +27,7 @@ describe('Service', function () {
   });
 
   it('send event', function () {
-    return service.send('buzzi.ecommerce.test', {
+    return service.send('buzzi.generic.test', {
       message: 'Hello, World!',
       timestamp: (new Date()).toISOString(),
     })
@@ -42,13 +43,13 @@ describe('Service', function () {
       });
   });
 
-  it('remove event', function () {
+  it('confirm event', function () {
     return service.send('buzzi.ecommerce.test', {
       message: 'Hello, World!',
       timestamp: (new Date()).toISOString(),
     })
     .then(() => service.fetch())
-    .then(response => service.remove(response.receipt));
+    .then(response => service.confirm(response));
   });
 
   describe('upload', () => {
