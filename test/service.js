@@ -8,11 +8,15 @@ const fs = require('fs');
 
 describe('Service', function () {
 
+  before(function () {
+    process.env.INTEGRATION_TESTS || this.skip();
+  });
+
   const SDK = require('../');
   const service = new SDK.Service(
-    '000000b1-1111-2222-3333-000000000000',
+    '00000000-0000-0000-0000-000000000000',
     '1234567812345678123456781234567812345678123456781234567812345678',
-    'https://dev-core.buzzi.io'
+    'https://core.buzzi.io'
   );
 
   it('ping', function () {
@@ -53,6 +57,11 @@ describe('Service', function () {
   });
 
   describe('upload', () => {
+
+    before(function () {
+      process.env.INTEGRATION_TESTS || this.skip();
+    });
+
     it('should be a function', () => {
       expect(service.upload).to.be.a('function');
     });

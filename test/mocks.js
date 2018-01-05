@@ -9,6 +9,7 @@ class FakeDelivery {
   constructor(hydrate = {}) {
 
     Object.assign(this, {
+      ticket_id: uuid(),
       account_id: uuid(),
       account_display: 'Fake Account',
       consumer_id: uuid(),

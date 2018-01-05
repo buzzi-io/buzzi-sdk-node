@@ -34,7 +34,7 @@ describe('Consumer', function () {
 
   });
 
-  describe('Timing Scenarios', function () {
+  describe.skip('Timing Scenarios', function () {
 
     it('#1 - No Events', function () {
 
